@@ -54,13 +54,16 @@ def extract_timings(bbb_version):
         in_times = str(image.getAttribute('in')).split(' ')
         out_times = image.getAttribute('out').split(' ')
 
-        temp = float(out_times[len(out_times) - 1])
-        if temp > total_length:
-            total_length = temp
+        out_time = out_times[len(out_times) - 1]
+        if out_time != "":
+          temp = float(out_time)
 
-        occurrences = len(in_times)
-        for i in range(occurrences):
-            dictionary[float(in_times[i])] = temp_dir + str(path)
+          if temp > total_length:
+              total_length = temp
+
+          occurrences = len(in_times)
+          for i in range(occurrences):
+              dictionary[float(in_times[i])] = temp_dir + str(path)
 
     return dictionary, total_length
 
